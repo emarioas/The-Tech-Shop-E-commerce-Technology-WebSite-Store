@@ -1,0 +1,37 @@
+<div class="navbar bg-inverse ">    
+    <div class="row">
+        <div class="col">
+            <a class="navbar-brand text-white">
+                THE TECH SHOP
+            </a>
+        </div>
+        <div *ngIf="authService.authenticated; else elseBlock" class="col text-right">
+            <small class="text-white">{{authService.name}}</small>
+            <button class="btn btn-sm bnt-warning"
+                    (click)="authService.logout()">
+                Logout
+            </button>
+        </div>
+        <div class="col text-white mr-1">
+            <store-cartsummary></store-cartsummary>
+        </div>
+        <div *ngIf="authService.role == 'Administrator'" class=" col text-right">
+            <button class="btn btn-sm btn-warning" routerLink="/admin">Admin Page</button>
+        </div>
+        </div>
+        <ng-template #elseBlock>
+            <div class="col text-right">
+                <button class="btn btn-primary" routerLink="/register">Register</button>
+                <button class="btn btn-primary" routerLink="/login">Login</button>
+            </div>
+        </ng-template>
+ </div>
+<div class="row no-gutters">
+    <div class="col-3">
+        <store-categoryfilter></store-categoryfilter>
+    </div>
+    <div class="col">
+        <store-product-list></store-product-list>
+        <store-pagination></store-pagination>
+    </div>
+</div>
